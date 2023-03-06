@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+
+    <style>
+  img{
+  display:block;
+  width:100%; 
+  height:100%;
+  object-fit: cover;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.p2 {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+.p1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-submit-button {
+	background: #93b1c9;
+	color: #fff;
+	border: 1px solid #eee;
+	border-radius: 40px;
+	box-shadow: 5px 5px 5px #eee;
+	text-shadow: none;
+}
+
+.form-submit-button:hover {
+	background: #3a5a72;
+	color: #fff;
+	border: 1px solid #eee;
+	border-radius: 40px;
+	box-shadow: 5px 5px 5px #eee;
+	text-shadow: none;
+}
+
+body {
+background-color: rgb(120, 163, 237);
+}
+
+    </style>
+</head>
+<body >
+  <center>
+  <br>   
+ 
+<div>
+<h1 class = "p2" style="color:rgb(143, 158, 148)"> Weather App </h1>
+</div>
+
+
+
+<form method="post">
+<table>
+    <tr>
+    <td><input type="text" name="city" placeholder="City Name"></td>
+    <td style ="width:5%"></td>
+
+    <td><input type="submit" class = "form-submit-button" value="Check Weather" onClick="this.form.submit(); this.disabled=true;"></td>
+    </tr>
+</table>
+
+</form>
+</br>
+
+</br>
+<p ><h3 class = "p1"  style="color:rgb(161, 44, 15);">{{ message }}</h3> </p>
+
+</br>
+</br>
+
+<div style="width: 20%; float:left; height:100px;  margin:10px">
+  <table>
+    <tr>
+      <tr>
+        <td style="width: 55px;height: 75px">
+          <img src="{{ url_for('static', path='images/icon.png') }}">
+        </td>
+        
+        <td> 
+          <h2 class = "p1"  style="color:rgb(237, 237, 246);"> {{current_weather.overall_weather}}</h2>
+        </td>
+      </tr>
+      <td style = "width:55px">
+        <h2 class = "p2"  style="color:rgb(6, 14, 101)"> {{current_weather.city}}</h2><h3 class = "p2"  style="color:rgb(6, 14, 101)">{{current_weather.current_time}}</h3>
+      </td>
+      <td></td>
+    </tr>
+   
+  </table>
+  
+  </div>
+ 
+<div style="width: 50%; float:center; height:100px;  margin:10px">
+<table>
+<tr>
+<th style="width: 55px;height: 50px">
+<img src="{{ url_for('static', path='images/temp.png') }}">
+</th>
+
+<td style="width: 15%;"> </td>
+<th style="width: 55px;height: 50px">
+<img src="{{ url_for('static', path='images/feels_like.png') }}">
+</th>
+
+<td style="width: 15%;"> </td>
+<th style="width: 55px;height: 50px">
+<img src="{{ url_for('static', path='images/humidity.png') }}">
+</th>
+
+<td style="width: 15%;"> </td>
+<th style="width: 55px;height: 50px">
+<img src="{{ url_for('static', path='images/pressure.webp') }}">
+</th>
+
+<td style="width: 15%;"> </td>
+<th style="width: 55px;height: 50px">
+<img src="{{ url_for('static', path='images/wind_speed.png') }}">
+</th>
+
+</tr>
+
+
+<tr>
+
+  <td style="width: 55px;height: 50px; color:rgb(237, 237, 246);">
+   {{current_weather.temp}} (°C)
+    </td>
+    
+    <td style="width: 15%;"> </td>
+    <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);">
+      {{current_weather.feels_like}} (°C)
+    </td>
+    
+    <td style="width: 15%;"> </td>
+    <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);">
+      {{current_weather.humidity}} (%)
+    </td>
+    
+    <td style="width: 15%;"> </td>
+    <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);">
+      {{current_weather.pressure}} (hPa)
+    </td>
+    
+    <td style="width: 15%;"> </td>
+    <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);">
+      {{current_weather.wind_speed}} (m/s)
+    </td>
+
+
+</tr>
+</table>
+</div>
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+<h3 class = "p2"  style="color:rgb(6, 14, 102)"> Forecast... </h3>
+
+<div style = " height: 170px; width: 1400px; overflow: auto;"  id= "fixTableHead"  >
+<table>
+  <thead>
+  <tr>
+    <th style="width: 55px;height: 50px; color:rgb(19, 31, 164);position:sticky; top: 0;background:rgb(120, 163, 237); ">
+      Date Time
+      </th>
+
+      <td style="width: 15%;"> </td>
+      <th style="width: 55px;height: 50px; color:rgb(19, 31, 164);position:sticky; top: 0;background:rgb(120, 163, 237); ">
+      Weather
+      </th>
+      
+      <td style="width: 15%;"> </td>
+      <th style="width: 55px;height: 50px; color:rgb(19, 31, 164);position:sticky; top: 0;background:rgb(120, 163, 237); ">
+      Temperature(°C)
+      </th>
+      
+      <td style="width: 15%;"> </td>
+      <th style="width: 55px;height: 50px; color:rgb(19, 31, 164);position:sticky; top: 0;background:rgb(120, 163, 237); ">
+      Humidity(%)
+      </th>
+      
+      <td style="width: 15%;"> </td>
+      <th style="width: 55px;height: 50px; color:rgb(19, 31, 164);position:sticky; top: 0; background:rgb(120, 163, 237);">
+     Wind Speed(m/s)
+      </th>
+  </tr>  
+</thead>
+  {% for forecast in five_days_forecast %}
+  <tbody>
+ <tr>
+  <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);text-align: center"> {{forecast.dt}} </td>
+  <td style="width: 15%;"> </td>
+  <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);text-align: center"> {{forecast.weather}} </td>
+  <td style="width: 15%;"> </td>
+  <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);text-align: center">{{forecast.temp_f}}</td>
+  <td style="width: 15%;"> </td>
+  <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);text-align: center">{{forecast.humidity_f}}</td>
+  <td style="width: 15%;"> </td>
+  <td style="width: 55px;height: 50px;color:rgb(237, 237, 246);text-align: center">{{forecast.wind_speed_f}}</td>
+
+ </tr>
+</tbody>
+ {% endfor %}
+
+</table>
+</div>
+
+</center>
+
+</body>
+</html>

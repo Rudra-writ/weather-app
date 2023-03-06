@@ -1,0 +1,13 @@
+uvicorn
+jinja2
+python-multipart
+requests
+geopy
+timezonefinder
+pytz
+datetime
+urlib
+pillow
+fastapi
+pydantic
+numpy
