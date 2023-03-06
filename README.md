@@ -1,7 +1,7 @@
-#Weather App
+# Weather App
 
 
-Instructions to use the Weather App:
+Instructions for usage:
 
 Navigate to "/weather_app" directory and run the command "pip install -r requirements.txt" to install the dependencies
 
